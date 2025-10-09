@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "io.wesner.robert.cb1060.robertsbetacommands"
-version = Yaml().load<Map<String, Any>>(FileReader("src/main/resources/plugin.yml")).get("version").toString()
+version = Yaml().load<Map<String, Any>>(FileReader("src/main/resources/plugin.yml"))["version"].toString()
 
 repositories {
     mavenCentral()

@@ -1,10 +1,10 @@
 commands:
     discord:
         enabled: true
-        link: "changeme"
+        link: "https://clammers.net/discord"
     website:
         enabled: true
-        link: "changeme"
+        link: "https://clammers.net"
 
 plugins:
     onePlayerSleep:
@@ -13,4 +13,22 @@ plugins:
         enabled: true
         message: |
             §6Welcome to §bServerName§6!
-            §6Make sure to join the §9/discord
+            §6Make sure to join the §9/discord§6!
+    intervalBroadcast:
+        enabled: true
+        intervalSeconds: 600
+        prefix: "§f[§5Hint§f]§2 "
+        messages:
+            - "§2Join the §9/discord §2if you enjoy this server!"
+            - "§2Remember to stay hydrated!"
+            - |
+                §2You can set up §6chest shops§2!
+                §2A §2guide §2for that is available in the §9/discord§2!
+            - "§2Also try vintage story!"
+            - "§2Check out the faction commands with §9/f§2!"
+            - "§2Warp to spawn with §9/warp spawn§2!"
+            - "§2Teleport somewhere random with §9/rand§2!"
+            - "§2See the richest players with §9/baltop§2!"
+            - "§2Short on cash? §9/sell §2your items or trade with players!"
+            - "§2Use §9/tpa§2 to teleport to other players!"
+            - "§2Check out the warps with §9/warps§2!"

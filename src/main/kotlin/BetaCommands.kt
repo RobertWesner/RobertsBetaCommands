@@ -4,6 +4,8 @@ import io.wesner.robert.cb1060.robertsbetacommands.commands.DiscordCommand
 import io.wesner.robert.cb1060.robertsbetacommands.commands.WebsiteCommand
 import io.wesner.robert.cb1060.robertsbetacommands.listener.PlayerJoinListener
 import io.wesner.robert.cb1060.robertsbetacommands.listener.PlayerInteractListener
+import io.wesner.robert.cb1060.robertsbetacommands.task.IntervalBroadcastTask
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.event.Event
@@ -20,8 +22,10 @@ class BetaCommands : JavaPlugin() {
     private val playerInteractListener = PlayerInteractListener(this)
 
     override fun onDisable() {
+        Bukkit.getScheduler().cancelTasks(this)
+
         val description = this.description
-        logger.info("Disabled " + description.name + ".")
+        this.logger.info("Disabled " + description.name + ".")
     }
 
     override fun onEnable() {
@@ -34,8 +38,10 @@ class BetaCommands : JavaPlugin() {
         this.registerEvent(Event.Type.PLAYER_JOIN, this.playerJoinListener, Event.Priority.Normal)
         this.registerEvent(Event.Type.PLAYER_INTERACT, this.playerInteractListener, Event.Priority.Normal)
 
+        this.setUpTasks()
+
         val description = this.description
-        logger.info("Enabled " + description.name + " version " + description.version + ".")
+        this.logger.info("Enabled " + description.name + " version " + description.version + ".")
     }
 
     override fun onCommand(
@@ -60,5 +66,23 @@ class BetaCommands : JavaPlugin() {
 
     private fun registerEvent(type: Event.Type, listener: Listener, priority: Event.Priority) {
         this.server.pluginManager.registerEvent(type, listener, priority, this)
+    }
+
+    private fun setUpTasks() {
+        if (this.configuration.getBoolean("plugins.intervalBroadcast.enabled", false)) {
+            val broadcastInterval = (this.configuration.getInt("plugins.intervalBroadcast.intervalSeconds", 600) * 20).toLong()
+            Bukkit
+                .getScheduler()
+                .scheduleAsyncRepeatingTask(
+                    this,
+                    IntervalBroadcastTask(
+                        this,
+                        this.configuration.getString("plugins.intervalBroadcast.prefix", ""),
+                        this.configuration.getStringList("plugins.intervalBroadcast.messages", listOf()),
+                    ),
+                    broadcastInterval,
+                    broadcastInterval,
+                )
+        }
     }
 }
