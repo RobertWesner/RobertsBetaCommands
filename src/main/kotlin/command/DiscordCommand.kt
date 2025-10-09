@@ -10,7 +10,7 @@ class DiscordCommand(val plugin: BetaCommands) : Command {
             return false
         }
 
-        sender.sendMessage("${ChatColor.BLUE}Join the Discord on ${ChatColor.AQUA}${plugin.configuration.getString("commands.discord.link")}")
+        sender.sendMessage("${ChatColor.BLUE}Join the Discord on ${ChatColor.AQUA}${plugin.configuration.getString("commands.discord.link")}${ChatColor.BLUE}!")
 
         return true
     }
