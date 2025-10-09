@@ -1,4 +1,11 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.yaml.snakeyaml.Yaml
+import java.io.FileReader
+
+buildscript {
+    dependencies {
+        classpath("org.yaml:snakeyaml:2.2")
+    }
+}
 
 plugins {
     kotlin("jvm") version "2.1.20"
@@ -6,7 +13,7 @@ plugins {
 }
 
 group = "io.wesner.robert.cb1060.robertsbetacommands"
-version = "1.0"
+version = Yaml().load<Map<String, Any>>(FileReader("src/main/resources/plugin.yml")).get("version").toString()
 
 repositories {
     mavenCentral()
@@ -17,6 +24,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.20")
     implementation(files("project-poseidon-1.1.10.jar"))
+    implementation("org.yaml:snakeyaml:2.2")
 }
 
 tasks.test {

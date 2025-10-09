@@ -1,6 +1,6 @@
 name: RobertsBetaCommands
 main: io.wesner.robert.cb1060.robertsbetacommands.BetaCommands
-version: 1.0
+version: 0.1
 description: >
              Test
 commands:
