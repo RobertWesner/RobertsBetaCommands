@@ -12,7 +12,7 @@ plugins:
     joinPlayerMessage:
         enabled: true
         message: |
-            §6Welcome to §bServerName§6!
+            §6Welcome to §bClammers.NET§6!
             §6Make sure to join the §9/discord§6!
     intervalBroadcast:
         enabled: true
