@@ -18,5 +18,14 @@ class PlayerInteractListener(val plugin: BetaCommands) : PlayerListener() {
                 world.time = 0
             }
         }
+
+        if (
+            plugin.configuration.getBoolean("plugins.persistentSoil.enabled", false)
+            && event.action == Action.PHYSICAL
+            && event.clickedBlock.type.id == Material.SOIL.id
+        ) {
+            plugin.logger.info("TEST")
+            event.isCancelled = true
+        }
     }
 }

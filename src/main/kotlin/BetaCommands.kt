@@ -36,7 +36,7 @@ class BetaCommands : JavaPlugin() {
             .register("website", WebsiteCommand(this))
 
         this.registerEvent(Event.Type.PLAYER_JOIN, this.playerJoinListener, Event.Priority.Normal)
-        this.registerEvent(Event.Type.PLAYER_INTERACT, this.playerInteractListener, Event.Priority.Normal)
+        this.registerEvent(Event.Type.PLAYER_INTERACT, this.playerInteractListener, Event.Priority.Highest)
 
         this.setUpTasks()
 
