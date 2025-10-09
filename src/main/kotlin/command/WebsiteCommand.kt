@@ -10,7 +10,7 @@ class WebsiteCommand(val plugin: BetaCommands) : Command {
             return false
         }
 
-        sender.sendMessage("${ChatColor.BLUE} Check out the Website at ${ChatColor.GOLD}${plugin.configuration.getString("commands.website.link")}${ChatColor.BLUE}!")
+        sender.sendMessage("${ChatColor.BLUE}Check out the Website at ${ChatColor.GOLD}${plugin.configuration.getString("commands.website.link")}${ChatColor.BLUE}!")
 
         return true
     }
