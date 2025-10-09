@@ -4,6 +4,7 @@ import io.wesner.robert.cb1060.robertsbetacommands.commands.DiscordCommand
 import io.wesner.robert.cb1060.robertsbetacommands.commands.WebsiteCommand
 import io.wesner.robert.cb1060.robertsbetacommands.listener.PlayerJoinListener
 import io.wesner.robert.cb1060.robertsbetacommands.listener.PlayerInteractListener
+import io.wesner.robert.cb1060.robertsbetacommands.task.AutoSaveTask
 import io.wesner.robert.cb1060.robertsbetacommands.task.IntervalBroadcastTask
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
@@ -79,6 +80,21 @@ class BetaCommands : JavaPlugin() {
                         this,
                         this.configuration.getString("plugins.intervalBroadcast.prefix", ""),
                         this.configuration.getStringList("plugins.intervalBroadcast.messages", listOf()),
+                    ),
+                    broadcastInterval,
+                    broadcastInterval,
+                )
+        }
+
+        if (this.configuration.getBoolean("plugins.autoSave.enabled", false)) {
+            val broadcastInterval = (this.configuration.getInt("plugins.autoSave.intervalSeconds", 600) * 20).toLong()
+            Bukkit
+                .getScheduler()
+                .scheduleAsyncRepeatingTask(
+                    this,
+                    AutoSaveTask(
+                        this,
+                        this.configuration.getBoolean("plugins.autoSave.debug", false),
                     ),
                     broadcastInterval,
                     broadcastInterval,

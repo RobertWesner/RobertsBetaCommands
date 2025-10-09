@@ -24,7 +24,6 @@ class PlayerInteractListener(val plugin: BetaCommands) : PlayerListener() {
             && event.action == Action.PHYSICAL
             && event.clickedBlock.type.id == Material.SOIL.id
         ) {
-            plugin.logger.info("TEST")
             event.isCancelled = true
         }
     }

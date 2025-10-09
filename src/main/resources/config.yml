@@ -7,6 +7,9 @@ commands:
         link: "https://clammers.net"
 
 plugins:
+    # Simple configurations
+    persistentSoil:
+        enabled: true
     onePlayerSleep:
         enabled: true
     joinPlayerMessage:
@@ -14,6 +17,8 @@ plugins:
         message: |
             §6Welcome to §bClammers.NET§6!
             §6Make sure to join the §9/discord§6!
+
+    # Tasks
     intervalBroadcast:
         enabled: true
         intervalSeconds: 600
@@ -32,5 +37,7 @@ plugins:
             - "§2Short on cash? §9/sell §2your items or trade with players!"
             - "§2Use §9/tpa§2 to teleport to other players!"
             - "§2Check out the warps with §9/warps§2!"
-    persistentSoil:
+    autoSave:
         enabled: true
+        intervalSeconds: 300
+        debug: false
