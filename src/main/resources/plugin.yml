@@ -1,0 +1,10 @@
+name: RobertsBetaCommands
+main: io.wesner.robert.cb1060.robertsbetacommands.BetaCommands
+version: 1.0
+description: >
+             Test
+commands:
+    discord:
+        description: "Get link to the official Discord server"
+    website:
+        description: "Get link to the official website"

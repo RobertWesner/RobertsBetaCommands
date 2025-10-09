@@ -1,0 +1,7 @@
+commands:
+    discord:
+        enabled: true
+        link: "changeme"
+    website:
+        enabled: true
+        link: "changeme"

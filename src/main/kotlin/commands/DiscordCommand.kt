@@ -1,0 +1,17 @@
+package io.wesner.robert.cb1060.robertsbetacommands.commands
+
+import io.wesner.robert.cb1060.robertsbetacommands.BetaCommands
+import org.bukkit.ChatColor
+import org.bukkit.command.CommandSender
+
+class DiscordCommand(val plugin: BetaCommands) : CommandInterface {
+    override fun run(sender: CommandSender, args: Array<String>): Boolean {
+        if (!this.plugin.configuration.getBoolean("commands.discord.enabled", false)) {
+            return false
+        }
+
+        sender.sendMessage("" + ChatColor.BLUE + "Join the Discord on " + ChatColor.AQUA + plugin.configuration.getString("commands.discord.link"))
+
+        return true
+    }
+}
