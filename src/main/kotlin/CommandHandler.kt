@@ -8,17 +8,17 @@ class CommandHandler {
     private val commands: MutableMap<String, Command> = mutableMapOf()
 
     fun register(name: String, command: Command): CommandHandler {
-        this.commands[name] = command
+        commands[name] = command
 
         return this
     }
 
     fun run(command: BukkitCommand, sender: CommandSender, args: Array<String>): Boolean {
         val name = command.name
-        if (!this.commands.containsKey(name)) {
+        if (!commands.containsKey(name)) {
             return false
         }
 
-        return this.commands[name]?.run(sender, args) ?: false
+        return commands[name]?.run(sender, args) ?: false
     }
 }

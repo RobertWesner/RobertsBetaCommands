@@ -4,9 +4,11 @@ import io.wesner.robert.cb1060.robertsbetacommands.BetaCommands
 import org.bukkit.ChatColor
 import org.bukkit.command.CommandSender
 
-class DiscordCommand(val plugin: BetaCommands) : Command {
+class DiscordCommand() : Command {
+    val plugin = BetaCommands.plugin
+
     override fun run(sender: CommandSender, args: Array<String>): Boolean {
-        if (!this.plugin.configuration.getBoolean("commands.discord.enabled", false)) {
+        if (!plugin.configuration.getBoolean("commands.discord.enabled", false)) {
             return false
         }
 
