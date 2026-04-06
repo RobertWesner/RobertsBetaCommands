@@ -1,8 +1,8 @@
 package io.wesner.robert.cb1060.robertsbetacommands
 
 import com.sun.net.httpserver.HttpServer
-import io.wesner.robert.cb1060.robertsbetacommands.commands.DiscordCommand
-import io.wesner.robert.cb1060.robertsbetacommands.commands.WebsiteCommand
+import io.wesner.robert.cb1060.robertsbetacommands.command.DiscordCommand
+import io.wesner.robert.cb1060.robertsbetacommands.command.WebsiteCommand
 import io.wesner.robert.cb1060.robertsbetacommands.listener.PlayerInteractListener
 import io.wesner.robert.cb1060.robertsbetacommands.listener.PlayerJoinListener
 import io.wesner.robert.cb1060.robertsbetacommands.task.AutoSaveTask
@@ -19,16 +19,9 @@ import java.util.logging.Logger
 
 
 class BetaCommands : JavaPlugin() {
-    companion object {
-        lateinit var plugin: BetaCommands
-    }
-
-    val logger: Logger = Logger.getLogger("Minecraft")
+    val logger: Logger = Bukkit.getLogger()
     private lateinit var commandHandler: CommandHandler
     private var httpServer: HttpServer? = null
-
-    private val playerJoinListener = PlayerJoinListener(this)
-    private val playerInteractListener = PlayerInteractListener(this)
 
     override fun onDisable() {
         httpServer?.stop(0)
@@ -47,8 +40,8 @@ class BetaCommands : JavaPlugin() {
             .register("discord", DiscordCommand())
             .register("website", WebsiteCommand())
 
-        registerEvent(Event.Type.PLAYER_JOIN, playerJoinListener, Event.Priority.Normal)
-        registerEvent(Event.Type.PLAYER_INTERACT, playerInteractListener, Event.Priority.Highest)
+        registerEvent(Event.Type.PLAYER_JOIN, PlayerJoinListener(), Event.Priority.Normal)
+        registerEvent(Event.Type.PLAYER_INTERACT, PlayerInteractListener(), Event.Priority.Highest)
 
         setUpTasks()
         setUpServerInformation()
@@ -124,5 +117,9 @@ class BetaCommands : JavaPlugin() {
             httpServer!!.executor = null
             httpServer!!.start()
         }
+    }
+
+    companion object {
+        lateinit var plugin: BetaCommands
     }
 }

@@ -1,39 +1,37 @@
-import org.yaml.snakeyaml.Yaml
-import java.io.FileReader
-
-buildscript {
-    dependencies {
-        classpath("org.yaml:snakeyaml:2.2")
-    }
-}
-
 plugins {
-    kotlin("jvm") version "2.1.20"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    kotlin("jvm") version "2.3.10"
+    id("com.gradleup.shadow") version "9.3.1"
 }
 
 group = "io.wesner.robert.cb1060.robertsbetacommands"
-version = Yaml().load<Map<String, Any>>(FileReader("src/main/resources/plugin.yml"))["version"].toString()
+version = "0.2.0"
 
 repositories {
     mavenCentral()
+    maven("https://maven.robert.wesner.io/repository/maven-public/")
+    maven("https://maven.robert.wesner.io/repository/johnymuffin-maven-public/")
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
-    implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.20")
-    implementation(files("project-poseidon-1.1.10.jar"))
-    implementation("org.yaml:snakeyaml:2.2")
+    implementation("com.legacyminecraft.poseidon:poseidon-craftbukkit:1.+")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
-tasks.shadowJar {
-    mergeServiceFiles()
-}
 kotlin {
     jvmToolchain(8)
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+tasks.processResources {
+    filesMatching("plugin.yml") {
+        expand(project.properties)
+    }
+}
+
+tasks.shadowJar {
+    archiveClassifier = ""
+}

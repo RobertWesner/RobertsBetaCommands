@@ -6,7 +6,9 @@ import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerListener
 
-class PlayerInteractListener(val plugin: BetaCommands) : PlayerListener() {
+class PlayerInteractListener : PlayerListener() {
+    val plugin = BetaCommands.plugin
+
     override fun onPlayerInteract(event: PlayerInteractEvent) {
         if (
             plugin.configuration.getBoolean("plugins.onePlayerSleep.enabled", false)
@@ -14,7 +16,7 @@ class PlayerInteractListener(val plugin: BetaCommands) : PlayerListener() {
             && event.clickedBlock.type.id == Material.BED_BLOCK.id
         ) {
             val world = plugin.server.getWorld(event.clickedBlock.world.name)
-            if (world.time > 12000 && world.time < 23999) {
+            if (world.time in 12001..<23999) {
                 world.time = 0
             }
         }

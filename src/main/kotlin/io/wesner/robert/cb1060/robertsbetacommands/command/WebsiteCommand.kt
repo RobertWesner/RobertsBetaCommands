@@ -1,4 +1,4 @@
-package io.wesner.robert.cb1060.robertsbetacommands.commands
+package io.wesner.robert.cb1060.robertsbetacommands.command
 
 import io.wesner.robert.cb1060.robertsbetacommands.BetaCommands
 import org.bukkit.ChatColor
