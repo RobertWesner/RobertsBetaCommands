@@ -1,6 +1,7 @@
 name: RobertsBetaCommands
 main: io.wesner.robert.cb1060.robertsbetacommands.BetaCommands
-version: 0.1
+version: ${version}
+depend: [KotlinLibs]
 description: >
     Nice-to-have commands and plugins you might want for your b1.7.3 server.
     Requires you to be running Project Poseidon, but you should do that either way.

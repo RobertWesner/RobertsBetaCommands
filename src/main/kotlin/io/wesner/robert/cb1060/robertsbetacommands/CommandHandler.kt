@@ -1,6 +1,6 @@
 package io.wesner.robert.cb1060.robertsbetacommands
 
-import io.wesner.robert.cb1060.robertsbetacommands.commands.Command
+import io.wesner.robert.cb1060.robertsbetacommands.command.Command
 import org.bukkit.command.Command as BukkitCommand
 import org.bukkit.command.CommandSender
 

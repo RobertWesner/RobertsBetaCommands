@@ -1,4 +1,4 @@
-package io.wesner.robert.cb1060.robertsbetacommands.commands
+package io.wesner.robert.cb1060.robertsbetacommands.command
 
 import org.bukkit.command.CommandSender
 
